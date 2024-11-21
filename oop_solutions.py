@@ -43,35 +43,103 @@ class BankAccount:
     def deposit(self, amount):
         if amount > 0:
             self.balance += amount
-            print(f"You have deposited shs.{amount: ,}, New balance: shs.{self.balance: ,}")
+            print(f"You have deposited shs.{amount: ,} and the new balance is : shs.{self.balance: ,}")
         else:
-            print("Invalid,Please deposit money.")
+            print("Invalid input,Please deposit money.")
 
     # Method to withdraw an amount
     def withdraw(self, amount):
-        if amount > 0:
-            if self.balance >= amount:
+        if amount > 0 and self.balance >= amount:
                 self.balance -= amount
                 print(f"You have Withdrawn shs.{amount: ,}, New balance: shs.{self.balance: ,}")
-            else:
-                print("Insufficient balance.")
+        else:
+            print("Insufficient balance.")
 
     # Method to print the account balance
     def print_balance(self):
         print(f"Account Number is : {self.account_number} ----- Balance: shs.{self.balance: ,}")
 
 # Creating an instance of BankAccount
-my_account = BankAccount(account_number="123456789ug", balance=8000)
+account = BankAccount(account_number="123456789ug", balance=8000)
 
 # Perform operations
-my_account.print_balance()
-my_account.deposit(50000)
-my_account.withdraw(3000)
-my_account.withdraw(1500)  
-my_account.print_balance()
+account.print_balance()
+account.deposit(50000)
+account.withdraw(3000)
+account.withdraw(1500)  
+account.print_balance()
 
 
                   #CHALLENGE
 
+class Library:
+    def __init__(self):
+        self.books = []  # Storing books as dictionaries
 
+    def add_book(self, title, author):
+        book = {"title": title, "author": author, "available": True}
+        self.books.append(book) 
+        print(f"\nThe book added is : '{title}' by  {author}.")
+
+    def remove_book(self, title):
+        for book in self.books:
+            if book["title"].lower() == title.lower():
+                self.books.remove(book)
+                print(f"Book removed: '{title}'.")
+                return
+        print(f"\nBook not found: '{title}'.")
+
+    def is_book_available(self, title):
+        for book in self.books:
+            if book["title"].lower() == title.lower():
+                return book["available"]
+        print(f"\nBook not found: '{title}'.")
+        return False
+
+    def borrow_book(self, title):
+        for book in self.books:
+            if book["title"].lower() == title.lower():
+                if book["available"]:
+                    book["available"] = False
+                    print(f"You borrowed: '{title}'.")
+                else:
+                    print(f"\n'{title}' is currently unavailable.")
+                return
+        print(f"Book not found: '{title}'.")
+
+    def return_book(self, title):
+        for book in self.books:
+            if book["title"].lower() == title.lower():
+                if not book["available"]:
+                    book["available"] = True
+                    print(f"\nThank you for returning: '{title}'.",'\n')
+                else:
+                    print(f"\n'{title}' was not borrowed.")
+                return
+        print(f"Book not found: '{title}'.")
+
+    def list_books(self):
+        if not self.books:
+            print("\nThe library has no books.")
+        else:
+            print("\nThe books in the library are:")
+            for book in self.books:
+                status = "Available" if book["available"] else "Unavailable"
+                print(f"\n - '{book['title']}' by {book['author']} ({status})")
+
+
+library = Library()
+
+library.add_book("The Hobbit", "J.R.R. Tolkien")
+library.add_book("1984", "George Orwell")
+library.list_books()
+
+library.borrow_book("1984")
+library.list_books()
+
+library.return_book("1984")
+library.list_books()
+
+library.remove_book("The Hobbit")
+library.list_books()
 

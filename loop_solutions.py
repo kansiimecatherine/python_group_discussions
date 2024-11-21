@@ -19,16 +19,7 @@ EvenNumbers()
 
 
                                          # #Intermediate
-# #approach one
-
-# def greater_number():
-#     number = 0 # initial number
-#     while number <= 10:
-#         number = int(input("Please enter a number : "))
-#         print(f"\nYou have entered: {number}",'\n\n')
-# greater_number()
-
-
+                                         
 # #approach two
 def number():
     num = 0

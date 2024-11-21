@@ -6,7 +6,7 @@ for fruit in fruits:
     print(fruit)
 
 
-#approach two
+#approach two(using a function)
 
 def juicy_fruits():
     fruits = ['Pawpaw','Passion fruit','Cherry','Mango','Straw berries']
